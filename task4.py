@@ -2,9 +2,24 @@ import types
 
 
 def flat_generator(list_of_list):
-    ...
-    yield
-    ...
+    # Не, ну, а что?
+    def tishka_flatten(data):
+        nested = True
+        while nested:
+            new = []
+            nested = False
+            for i in data:
+                if isinstance(i, list):
+                    new.extend(i)
+                    nested = True
+                else:
+                    new.append(i)
+            data = new
+        return data
+    
+    data = tishka_flatten(list_of_list)
+    for i in data:
+        yield i 
 
 def test_4():
 
